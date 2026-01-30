@@ -10,6 +10,22 @@ End-to-End Data Science Project for detecting fraudulent financial transactions 
 
 </div>
 
+<h2>📥 Dataset Download</h2>
+
+<ul>
+<li>
+<a href="https://huggingface.co/datasets/RegularGuyOIO/financial-transaction-fraud-dataset/blob/main/Fraud.csv" target="_blank">
+Download Fraud Dataset (Hugging Face)
+</a>
+</li>
+</ul>
+
+<p>
+After downloading, place <b>Fraud.csv</b> inside the project root directory before running the notebooks.
+</p>
+
+<hr>
+
 <h2>📌 Project Overview</h2>
 
 <p>
@@ -62,7 +78,7 @@ Binary Classification:
 <pre>
 ├── 00.ipynb                      # Automated EDA
 ├── 01.ipynb                      # ML Pipeline
-├── Fraud.csv                     # Dataset
+├── Fraud.csv                     # Dataset (download separately)
 ├── Data Dictionary.txt           # Column Info
 ├── fraud_detection_data_report.html
 └── README.md
@@ -152,10 +168,6 @@ Removed columns:
 Handled using <b>SMOTE</b> (Synthetic Minority Oversampling Technique).
 </p>
 
-<p>
-This prevents the model from biasing toward majority class.
-</p>
-
 <hr>
 
 <h2>🤖 Models Evaluated</h2>
@@ -168,18 +180,6 @@ This prevents the model from biasing toward majority class.
 <li>SVM</li>
 <li>XGBoost</li>
 </ul>
-
-Metrics:
-
-<ul>
-<li>Accuracy</li>
-<li>Precision</li>
-<li>Recall</li>
-<li>F1 Score</li>
-<li>ROC-AUC</li>
-</ul>
-
-<p><b>Winner: XGBoost</b></p>
 
 <hr>
 
@@ -216,17 +216,6 @@ Metrics:
 
 <hr>
 
-<h2>📏 Measuring Success</h2>
-
-<ul>
-<li>Fraud rate reduction</li>
-<li>Alert precision</li>
-<li>ROC-AUC stability</li>
-<li>Periodic evaluation</li>
-</ul>
-
-<hr>
-
 <h2>🧰 Tech Stack</h2>
 
 <ul>
@@ -238,23 +227,6 @@ Metrics:
 <li>Matplotlib / Seaborn</li>
 <li>Statsmodels</li>
 <li>Pandas Profiling</li>
-</ul>
-
-<hr>
-
-<h2>▶️ How To Run</h2>
-
-<pre>
-pip install pandas numpy scikit-learn imbalanced-learn xgboost seaborn matplotlib pandas-profiling
-</pre>
-
-<p>
-Run:
-</p>
-
-<ul>
-<li>00.ipynb → EDA</li>
-<li>01.ipynb → ML Pipeline</li>
 </ul>
 
 <hr>
