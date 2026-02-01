@@ -1,239 +1,117 @@
 <div align="center">
 
-<h1>💳 Financial Transaction Fraud Detection using Machine Learning</h1>
+<img src="https://capsule-render.vercel.app/render?type=waving&color=auto&height=220&section=header&text=Fraud%20Detection%20Architecture&fontSize=50&animation=fadeIn" width="100%" />
 
-<p>
-End-to-End Data Science Project for detecting fraudulent financial transactions using classical ML and XGBoost.
+<p align="center">
+  <img src="https://img.shields.io/badge/Python-3.9+-3776AB?style=for-the-badge&logo=python&logoColor=white" />
+  <img src="https://img.shields.io/badge/XGBoost-Selected-008000?style=for-the-badge&logo=xgboost" />
+  <img src="https://img.shields.io/badge/Dataset-6.3M%20Rows-blueviolet?style=for-the-badge" />
+  <img src="https://img.shields.io/badge/Business-FinTech-FF6600?style=for-the-badge" />
 </p>
 
-<hr>
+<h3>🕵️‍♂️ End-to-End Financial Transaction Fraud Detection</h3>
+<p>
+    An enterprise-level Machine Learning pipeline designed to identify fraudulent activity within <b>6.3 Million</b> transactions with surgical precision.
+</p>
 
+<a href="#-final-model-performance">View Performance</a> •
+<a href="#-technical-methodology">Methodology</a> •
+<a href="#-business-impact">Business Impact</a> •
+<a href="https://huggingface.co/datasets/RegularGuyOIO/financial-transaction-fraud-dataset/blob/main/Fraud.csv">Download Dataset</a>
+
+<hr />
 </div>
 
-<h2>📥 Dataset Download</h2>
+## 📌 The Problem Landscape
+Financial fraud costs global institutions billions annually. The primary technical hurdle in this project was the **"Needle in a Haystack"** problem: fraudulent transactions accounted for only **0.13%** of the entire dataset. 
 
-<ul>
-<li>
-<a href="https://huggingface.co/datasets/RegularGuyOIO/financial-transaction-fraud-dataset/blob/main/Fraud.csv" target="_blank">
-Download Fraud Dataset (Hugging Face)
-</a>
-</li>
-</ul>
 
-<p>
-After downloading, place <b>Fraud.csv</b> inside the project root directory before running the notebooks.
-</p>
 
-<hr>
+## 🏗 Technical Methodology
 
-<h2>📌 Project Overview</h2>
+### 1. Data Forensics & Cleaning
+* **Volume:** Processed 6,362,620 rows across 11 features.
+* **Multicollinearity:** Utilized **Variance Inflation Factor (VIF)** to identify and prune highly correlated features (like old/new balances) that would otherwise lead to overfit models.
 
-<p>
-This project builds a complete Machine Learning pipeline to detect fraudulent financial transactions.
-</p>
+### 2. Feature Engineering (Domain Logic)
+Instead of relying on raw data, I engineered features that simulate the **Internal Logic** of a transaction:
+* **Error in Origin:** Checks if the requested amount matches the actual balance deduction.
+* **Error in Destination:** Checks if the receiver's account actually grew by the sent amount.
 
-<ul>
-<li>Understand transaction behavior</li>
-<li>Perform exploratory data analysis</li>
-<li>Engineer domain-driven features</li>
-<li>Handle severe class imbalance</li>
-<li>Compare multiple ML models</li>
-<li>Select best performing algorithm</li>
-<li>Provide actionable business insights</li>
-</ul>
+### 3. Solving Class Imbalance
+To ensure the model didn't simply ignore the rare fraud cases, I implemented **SMOTE (Synthetic Minority Over-sampling Technique)**, effectively balancing the training set without losing critical information.
 
-<p>
-Dataset contains more than <b>6.3 million transactions</b> simulating 30 days of activity.
-</p>
 
-<p>
-Binary Classification:
-</p>
 
-<ul>
-<li><b>0</b> → Legitimate Transaction</li>
-<li><b>1</b> → Fraudulent Transaction</li>
-</ul>
+---
 
-<hr>
+## 📊 Final Model Performance
+After a rigorous comparison of 6 algorithms (Logistic Regression, Random Forest, SVM, etc.), **XGBoost** emerged as the superior architect.
 
-<h2>🚀 Key Highlights</h2>
-
-<ul>
-<li>Large scale dataset (6.3M+ rows)</li>
-<li>Automated + manual EDA</li>
-<li>Feature engineering using domain logic</li>
-<li>Multicollinearity handled using VIF</li>
-<li>Class imbalance solved using SMOTE</li>
-<li>Multiple ML models evaluated</li>
-<li>XGBoost selected as final model</li>
-<li>Strong ROC-AUC performance</li>
-<li>Business interpretation included</li>
-</ul>
-
-<hr>
-
-<h2>📂 Repository Structure</h2>
-
-<pre>
-├── 00.ipynb                      # Automated EDA
-├── 01.ipynb                      # ML Pipeline
-├── Fraud.csv                     # Dataset (download separately)
-├── Data Dictionary.txt           # Column Info
-├── fraud_detection_data_report.html
-└── README.md
-</pre>
-
-<hr>
-
-<h2>📊 Dataset Description</h2>
-
-<table border="1" cellpadding="8">
-<tr><th>Column</th><th>Description</th></tr>
-<tr><td>step</td><td>Hour of transaction (1 step = 1 hour)</td></tr>
-<tr><td>type</td><td>CASH_IN, CASH_OUT, PAYMENT, TRANSFER, DEBIT</td></tr>
-<tr><td>amount</td><td>Transaction amount</td></tr>
-<tr><td>nameOrig</td><td>Sender ID</td></tr>
-<tr><td>oldbalanceOrg</td><td>Sender balance before</td></tr>
-<tr><td>newbalanceOrig</td><td>Sender balance after</td></tr>
-<tr><td>nameDest</td><td>Receiver ID</td></tr>
-<tr><td>oldbalanceDest</td><td>Receiver balance before</td></tr>
-<tr><td>newbalanceDest</td><td>Receiver balance after</td></tr>
-<tr><td>isFraud</td><td>Target variable</td></tr>
-<tr><td>isFlaggedFraud</td><td>Rule based fraud flag</td></tr>
+<table align="center" border="1">
+  <tr>
+    <th align="center">Metric</th>
+    <th align="center">Score</th>
+    <th align="center">Significance</th>
+  </tr>
+  <tr>
+    <td><b>Accuracy</b></td>
+    <td align="center">97%</td>
+    <td>Overall system correctness</td>
+  </tr>
+  <tr>
+    <td><b>Precision</b></td>
+    <td align="center">97%</td>
+    <td>Minimizing False Positives (customer annoyance)</td>
+  </tr>
+  <tr>
+    <td><b>Recall</b></td>
+    <td align="center">97%</td>
+    <td>Maximizing Detection (preventing financial loss)</td>
+  </tr>
+  <tr>
+    <td><b>F1-Score</b></td>
+    <td align="center">97%</td>
+    <td>Balance between Precision and Recall</td>
+  </tr>
 </table>
 
-<hr>
+---
 
-<h2>🧪 Exploratory Data Analysis</h2>
+## 🧠 Key Insights
+* **The "Transfer-CashOut" Loop:** Fraudulent behavior is strictly limited to `TRANSFER` followed by an immediate `CASH_OUT`.
+* **The Emptying Pattern:** Fraudsters almost always attempt to drain the account to exactly **0.00**.
+* **Flag Efficiency:** The existing rule-based `isFlaggedFraud` caught almost nothing; the ML model is necessary for modern security.
 
-<ul>
-<li>Pandas Profiling report</li>
-<li>Statistical summaries</li>
-<li>Distribution plots</li>
-<li>Fraud vs Non-fraud analysis</li>
-</ul>
+<hr />
 
-<h3>Key Findings</h3>
+## 🛡 Business Impact & Recommendations
+> **"Data is the fuel, but insights are the engine."**
 
-<ul>
-<li>Extreme class imbalance</li>
-<li>Fraud appears only in CASH_OUT and TRANSFER</li>
-<li>Fraud shows abnormal balance movements</li>
-</ul>
+1. **Real-time API Scoring:** Deploy the XGBoost model as a REST API for millisecond-latency scoring during the transaction "handshake."
+2. **Behavioral Throttling:** Automatically flag transactions where the `newbalanceOrig` hits zero from a high starting balance.
+3. **Adaptive Thresholds:** Dynamically adjust the model's sensitivity based on the `step` (hour of the day), as fraud patterns shift during night hours.
 
-<hr>
+<hr />
 
-<h2>🛠 Feature Engineering</h2>
+## 🧰 Tech Stack
+* **Language:** Python 3.9+
+* **Frameworks:** Scikit-Learn, XGBoost, Statsmodels
+* **Data Handling:** Pandas, NumPy
+* **Visualization:** Matplotlib, Seaborn
+* **Tools:** Pandas Profiling, Jupyter Notebooks
 
-<p><b>Receiver credited amount</b></p>
+---
 
-<pre>
-newbalanceDest - oldbalanceDest
-</pre>
+## ✨ Author
+**Mayank Bungla**
+*Data Scientist | Machine Learning Engineer*
 
-<p><b>Sender debited amount</b></p>
-
-<pre>
-oldbalanceOrg - newbalanceOrig
-</pre>
-
-<p>
-These features capture real money flow and became strong predictors.
+<p align="left">
+<a href="https://www.linkedin.com/in/mayankbungla/"><img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" /></a>
+<a href="mailto:your-email@example.com"><img src="https://img.shields.io/badge/Gmail-D14836?style=for-the-badge&logo=gmail&logoColor=white" /></a>
 </p>
 
-<hr>
-
-<h2>🔗 Multicollinearity Handling</h2>
-
-<p>Used correlation heatmap + Variance Inflation Factor (VIF)</p>
-
-Removed columns:
-
-<ul>
-<li>oldbalanceOrg</li>
-<li>newbalanceOrig</li>
-<li>oldbalanceDest</li>
-<li>newbalanceDest</li>
-<li>nameOrig</li>
-<li>nameDest</li>
-<li>isFlaggedFraud</li>
-</ul>
-
-<hr>
-
-<h2>⚖️ Class Imbalance</h2>
-
-<p>
-Handled using <b>SMOTE</b> (Synthetic Minority Oversampling Technique).
-</p>
-
-<hr>
-
-<h2>🤖 Models Evaluated</h2>
-
-<ul>
-<li>Logistic Regression</li>
-<li>Decision Tree</li>
-<li>Random Forest</li>
-<li>Gradient Boosting</li>
-<li>SVM</li>
-<li>XGBoost</li>
-</ul>
-
-<hr>
-
-<h2>📈 Final Model Performance</h2>
-
-<ul>
-<li>Accuracy ≈ 97%</li>
-<li>Precision ≈ 97%</li>
-<li>Recall ≈ 97%</li>
-<li>F1 ≈ 97%</li>
-<li>Strong ROC-AUC</li>
-</ul>
-
-<hr>
-
-<h2>🧠 Key Fraud Indicators</h2>
-
-<ul>
-<li>CASH_OUT & TRANSFER dominance</li>
-<li>Sender / Receiver balance mismatch</li>
-<li>Sudden fund depletion</li>
-</ul>
-
-<hr>
-
-<h2>🛡 Business Recommendations</h2>
-
-<ul>
-<li>Real-time ML scoring</li>
-<li>Balance consistency checks</li>
-<li>Extra verification on large transfers</li>
-<li>Continuous retraining</li>
-</ul>
-
-<hr>
-
-<h2>🧰 Tech Stack</h2>
-
-<ul>
-<li>Python</li>
-<li>Pandas / NumPy</li>
-<li>Scikit-Learn</li>
-<li>XGBoost</li>
-<li>Imbalanced-Learn</li>
-<li>Matplotlib / Seaborn</li>
-<li>Statsmodels</li>
-<li>Pandas Profiling</li>
-</ul>
-
-<hr>
-
-<h2>✨ Author</h2>
-
-<p>
-<b>Mayank Bungla</b><br>
-Data Science | Machine Learning | Analytics
+<p align="center">
+  <i>"I build systems that see patterns humans miss."</i>
 </p>
