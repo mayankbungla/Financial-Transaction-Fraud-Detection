@@ -105,7 +105,7 @@ After a rigorous comparison of 6 algorithms (Logistic Regression, Random Forest,
 
 ## ✨ Author
 **Mayank Bungla**
-*Data Scientist | Machine Learning Engineer*
+*Data Scientist | Data Analyst*
 
 <p align="left">
 <a href="https://www.linkedin.com/in/mayankbungla/"><img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" /></a>
